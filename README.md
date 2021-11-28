@@ -92,7 +92,6 @@ public class NoteSearch extends Activity implements SearchView.OnQueryTextListen
         sqLiteDatabase = new NotePadProvider.DatabaseHelper(this).getReadableDatabase();
         //设置该SearchView显示搜索按钮
         searchView.setSubmitButtonEnabled(true);
-
         //设置该SearchView内默认显示的提示文本
         searchView.setQueryHint("查找");
         searchView.setOnQueryTextListener(this);
