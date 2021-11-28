@@ -70,20 +70,15 @@ public class NoteSearch extends Activity implements SearchView.OnQueryTextListen
 {
     ListView listView;
     SQLiteDatabase sqLiteDatabase;
-    /**
-     * The columns needed by the cursor adapter
-     */
     private static final String[] PROJECTION = new String[]{
             NotePad.Notes._ID, // 0
             NotePad.Notes.COLUMN_NAME_TITLE, // 1
             NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE//时间
     };
-
     public boolean onQueryTextSubmit(String query) {
         Toast.makeText(this, "您选择的是："+query, Toast.LENGTH_SHORT).show();
         return false;
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +96,6 @@ public class NoteSearch extends Activity implements SearchView.OnQueryTextListen
         //设置该SearchView内默认显示的提示文本
         searchView.setQueryHint("查找");
         searchView.setOnQueryTextListener(this);
-
     }
     public boolean onQueryTextChange(String string) {
         String selection1 = NotePad.Notes.COLUMN_NAME_TITLE+" like ? or "+NotePad.Notes.COLUMN_NAME_NOTE+" like ?";
@@ -152,45 +146,45 @@ public static final int RED_COLOR = 4; //红
 
 2）颜色填充的具体实现： 
 
-public class MyCursorAdapter extends SimpleCursorAdapter {
-    public MyCursorAdapter(Context context, int layout, Cursor c,
-                           String[] from, int[] to) {
-        super(context, layout, c, from, to);
-    }
-    @Override
-    public void bindView(View view, Context context, Cursor cursor){
-        super.bindView(view, context, cursor);
-        //从数据库中读取的cursor中获取笔记列表对应的颜色数据，并设置笔记颜色
-        int x = cursor.getInt(cursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_BACK_COLOR));
-        /**
-         * 白 255 255 255
-         * 黄 247 216 133
-         * 蓝 165 202 237
-         * 绿 161 214 174
-         * 红 244 149 133
-         */
-        switch (x){
-            case NotePad.Notes.DEFAULT_COLOR:
-                view.setBackgroundColor(Color.rgb(255, 255, 255));
-                break;
-            case NotePad.Notes.YELLOW_COLOR:
-                view.setBackgroundColor(Color.rgb(247, 216, 133));
-                break;
-            case NotePad.Notes.BLUE_COLOR:
-                view.setBackgroundColor(Color.rgb(165, 202, 237));
+public class MyCursorAdapter extends SimpleCursorAdapter {  
+    public MyCursorAdapter(Context context, int layout, Cursor c,  
+                           String[] from, int[] to) {  
+        super(context, layout, c, from, to);  
+    }  
+    @Override  
+    public void bindView(View view, Context context, Cursor cursor){  
+        super.bindView(view, context, cursor);  
+        //从数据库中读取的cursor中获取笔记列表对应的颜色数据，并设置笔记颜色  
+        int x = cursor.getInt(cursor.getColumnIndex(NotePad.Notes.COLUMN_NAME_BACK_COLOR));  
+        /**  
+         * 白 255 255 255  
+         * 黄 247 216 133  
+         * 蓝 165 202 237  
+         * 绿 161 214 174  
+         * 红 244 149 133  
+         */  
+        switch (x){  
+            case NotePad.Notes.DEFAULT_COLOR:  
+                view.setBackgroundColor(Color.rgb(255, 255, 255));  
+                break;  
+            case NotePad.Notes.YELLOW_COLOR:  
+                view.setBackgroundColor(Color.rgb(247, 216, 133));  
+                break;  
+            case NotePad.Notes.BLUE_COLOR:  
+                view.setBackgroundColor(Color.rgb(165, 202, 237));  
                 break;
             case NotePad.Notes.GREEN_COLOR:
                 view.setBackgroundColor(Color.rgb(161, 214, 174));
-                break;
-            case NotePad.Notes.RED_COLOR:
-                view.setBackgroundColor(Color.rgb(244, 149, 133));
-                break;
-            default:
-                view.setBackgroundColor(Color.rgb(255, 255, 255));
-                break;
-        }
-    }
-}
+                break;  
+            case NotePad.Notes.RED_COLOR:  
+                view.setBackgroundColor(Color.rgb(244, 149, 133));   
+                break;  
+            default:  
+                view.setBackgroundColor(Color.rgb(255, 255, 255));  
+                break;  
+        }  
+    }  
+}  
 
 3）在NoteList类的PROJECTION中显示颜色字段：
 
