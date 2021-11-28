@@ -1,0 +1,7 @@
+#Sun Nov 28 21:34:26 GMT+08:00 2021
+base.1=C\:\\Users\\Administrator\\Desktop\\NotePad-master\\NotePad-master\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
+path.1=7/classes.dex
+base.0=C\:\\Users\\Administrator\\Desktop\\NotePad-master\\NotePad-master\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=0/classes.dex
