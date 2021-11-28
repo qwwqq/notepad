@@ -64,21 +64,8 @@
         values.put(NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE, format);
 
 2.添加笔记查询功能（根据标题查询）  
-                  search功能具体实现代码：  
-                  
-public class NoteSearch extends Activity implements SearchView.OnQueryTextListener
-{
-    ListView listView;
-    SQLiteDatabase sqLiteDatabase;
-    private static final String[] PROJECTION = new String[]{
-            NotePad.Notes._ID, // 0
-            NotePad.Notes.COLUMN_NAME_TITLE, // 1
-            NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE//时间
-    };
-    public boolean onQueryTextSubmit(String query) {
-        Toast.makeText(this, "您选择的是："+query, Toast.LENGTH_SHORT).show();
-        return false;
-    }
+search功能具体实现代码：
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -219,35 +206,35 @@ public class MyCursorAdapter extends SimpleCursorAdapter {
 </LinearLayout>
 
 2）便签导出方法具体实现： 
-
-public class OutputText extends Activity {
-   //要使用的数据库中笔记的信息
-    private static final String[] PROJECTION = new String[] {
-            NotePad.Notes._ID, // 0
-            NotePad.Notes.COLUMN_NAME_TITLE, // 1
-            NotePad.Notes.COLUMN_NAME_NOTE, // 2
-            NotePad.Notes.COLUMN_NAME_CREATE_DATE, // 3
-            NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE, // 4
-    };
-    //读取出的值放入这些变量
-    private String TITLE;
-    private String NOTE;
-    private String CREATE_DATE;
-    private String MODIFICATION_DATE;
-    //读取该笔记信息
-    private Cursor mCursor;
-    //导出文件的名字
-    private EditText mName;
-    //NoteEditor传入的uri，用于从数据库查出该笔记
-    private Uri mUri;
-    //关于返回与保存按钮的一个特殊标记，返回的话不执行导出，点击按钮才导出
-    private boolean flag = false;
-    private static final int COLUMN_INDEX_TITLE = 1;
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.output_text);
-        mUri = getIntent().getData();
-        mCursor = managedQuery(
+···
+public class OutputText extends Activity {  
+   //要使用的数据库中笔记的信息  
+    private static final String[] PROJECTION = new String[] {  
+            NotePad.Notes._ID, // 0  
+            NotePad.Notes.COLUMN_NAME_TITLE, // 1  
+            NotePad.Notes.COLUMN_NAME_NOTE, // 2  
+            NotePad.Notes.COLUMN_NAME_CREATE_DATE, // 3  
+            NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE, // 4  
+    };  
+    //读取出的值放入这些变量  
+    private String TITLE;  
+    private String NOTE;  
+    private String CREATE_DATE;  
+    private String MODIFICATION_DATE;  
+    //读取该笔记信息  
+    private Cursor mCursor;  
+    //导出文件的名字  
+    private EditText mName;  
+    //NoteEditor传入的uri，用于从数据库查出该笔记  
+    private Uri mUri;  
+    //关于返回与保存按钮的一个特殊标记，返回的话不执行导出，点击按钮才导出  
+    private boolean flag = false;  
+    private static final int COLUMN_INDEX_TITLE = 1;  
+    public void onCreate(Bundle savedInstanceState) {  
+        super.onCreate(savedInstanceState);  
+        setContentView(R.layout.output_text);  
+        mUri = getIntent().getData();  
+        mCursor = managedQuery(  
                 mUri,        // The URI for the note that is to be retrieved.
                 PROJECTION,  // The columns to retrieve
                 null,        // No selection criteria are used, so no where columns are needed.
@@ -314,3 +301,4 @@ public class OutputText extends Activity {
         }
     }
 }
+···
