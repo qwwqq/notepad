@@ -1,43 +1,43 @@
 学院：计算机与网络空间安全  
-专业：软件工程
-学号：116052019023
-姓名：林嘉豪
-项目名称：基于NotePad应用的功能扩展
-——————————————————————————————————————————
+专业：软件工程  
+学号：116052019023  
+姓名：林嘉豪  
+项目名称：基于NotePad应用的功能扩展  
+——————————————————————————————————————————  
 
-一、实验要求
+一、实验要求  
         阅读NotePad的源代码并做如下扩展：
         基本要求：
         NoteList中显示条目增加时间戳显示
         添加笔记查询功能（根据标题查询）
-   扩展要求：
+   扩展要求：  
         附加功能：根据自身实际情况进行扩充（至少两项）
         
-二、实验内容
-- 基本功能
-1. NoteList中显示条目增加时间戳显示 
+二、实验内容  
+- 基本功能  
+1. NoteList中显示条目增加时间戳显示   
 [image](https://github.com/qwwqq/test1/blob/master/app/images/1.png)
 
-2.添加笔记查询功能（根据标题查询）
-所有笔记：
+2.添加笔记查询功能（根据标题查询）  
+所有笔记：  
 [image](https://github.com/qwwqq/test1/blob/master/app/images/1.png)
 
-搜索带ljh关键字的便签：
+搜索带ljh关键字的便签：  
 [image](https://github.com/qwwqq/test1/blob/master/app/images/2.png)
 
-- 扩展功能
-1.美化UI界面：
+- 扩展功能  
+1.美化UI界面：  
 [image](https://github.com/qwwqq/test1/blob/master/app/images/3.png)
 [image](https://github.com/qwwqq/test1/blob/master/app/images/5.png)
 
 
-2.导出笔记：
+2.导出笔记：  
 [image](https://github.com/qwwqq/test1/blob/master/app/images/4.png)
 
-三、关键代码
-1.NoteList中显示条目增加时间戳显示
-1）实现时间戳的布局框架：
- <!--添加显示时间的TextView-->
+三、关键代码  
+1.NoteList中显示条目增加时间戳显示  
+1）实现时间戳的布局框架：  
+ <!--添加显示时间的TextView-->  
     <TextView
         android:id="@+id/text1_time"
         android:layout_width="match_parent"
@@ -46,13 +46,13 @@
         android:paddingLeft="5dip"
         android:textColor="@color/colorBlack"/>
 
-2）在NoteList类的PROJECTION中添加时间字段
+2）在NoteList类的PROJECTION中添加时间字段  
         NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE
 
-3）增加一个ID给显示时间用
+3）增加一个ID给显示时间用  
         int[] viewIDs = { android.R.id.text1 ,android.R.id.text2}
 
-4）在note editor获取并格式化时间：
+4）在note editor获取并格式化时间：  
         ContentValues values = new ContentValues();
         Long now = Long.valueOf(System.currentTimeMillis());
         SimpleDateFormat sf = new SimpleDateFormat("yy/MM/dd HH:mm");
@@ -60,8 +60,8 @@
         String format = sf.format(d);
         values.put(NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE, format);
 
-2.添加笔记查询功能（根据标题查询）
-                  search功能具体实现代码：
+2.添加笔记查询功能（根据标题查询）  
+                  search功能具体实现代码：  
 package com.example.android.notepad;
 import android.app.Activity;
 import android.content.Intent;
@@ -148,15 +148,15 @@ public class NoteSearch extends Activity implements SearchView.OnQueryTextListen
     }
 }
 
-3.美化UI
-1）五种颜色的类替换：
+3.美化UI  
+1）五种颜色的类替换：  
 public static final int DEFAULT_COLOR = 0; //白
 public static final int YELLOW_COLOR = 1; //黄
 public static final int BLUE_COLOR = 2; //蓝
 public static final int GREEN_COLOR = 3; //绿
 public static final int RED_COLOR = 4; //红
 
-2）颜色填充的具体实现：
+2）颜色填充的具体实现：  
 public class MyCursorAdapter extends SimpleCursorAdapter {
     public MyCursorAdapter(Context context, int layout, Cursor c,
                            String[] from, int[] to) {
@@ -200,8 +200,8 @@ public class MyCursorAdapter extends SimpleCursorAdapter {
 3）在NoteList类的PROJECTION中显示颜色字段：
         NotePad.Notes.COLUMN_NAME_BACK_COLOR
         
-4.笔记的导出
-1）导出界面布局：
+4.笔记的导出  
+1）导出界面布局：  
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
@@ -228,7 +228,7 @@ public class MyCursorAdapter extends SimpleCursorAdapter {
         android:onClick="OutputOk" />
 </LinearLayout>
 
-2）便签导出方法具体实现：
+2）便签导出方法具体实现：  
 public class OutputText extends Activity {
    //要使用的数据库中笔记的信息
     private static final String[] PROJECTION = new String[] {
