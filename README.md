@@ -47,12 +47,15 @@
         android:textColor="@color/colorBlack"/>
 
 2）在NoteList类的PROJECTION中添加时间字段  
+
         NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE
 
 3）增加一个ID给显示时间用  
+
         int[] viewIDs = { android.R.id.text1 ,android.R.id.text2}
 
 4）在note editor获取并格式化时间：  
+
         ContentValues values = new ContentValues();
         Long now = Long.valueOf(System.currentTimeMillis());
         SimpleDateFormat sf = new SimpleDateFormat("yy/MM/dd HH:mm");
@@ -62,17 +65,7 @@
 
 2.添加笔记查询功能（根据标题查询）  
                   search功能具体实现代码：  
-package com.example.android.notepad;
-import android.app.Activity;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
-
+                  
 public class NoteSearch extends Activity implements SearchView.OnQueryTextListener
 {
     ListView listView;
@@ -150,13 +143,15 @@ public class NoteSearch extends Activity implements SearchView.OnQueryTextListen
 
 3.美化UI  
 1）五种颜色的类替换：  
-public static final int DEFAULT_COLOR = 0; //白
-public static final int YELLOW_COLOR = 1; //黄
-public static final int BLUE_COLOR = 2; //蓝
-public static final int GREEN_COLOR = 3; //绿
-public static final int RED_COLOR = 4; //红
 
-2）颜色填充的具体实现：  
+public static final int DEFAULT_COLOR = 0; //白  
+public static final int YELLOW_COLOR = 1; //黄  
+public static final int BLUE_COLOR = 2; //蓝  
+public static final int GREEN_COLOR = 3; //绿  
+public static final int RED_COLOR = 4; //红  
+
+2）颜色填充的具体实现： 
+
 public class MyCursorAdapter extends SimpleCursorAdapter {
     public MyCursorAdapter(Context context, int layout, Cursor c,
                            String[] from, int[] to) {
@@ -198,10 +193,12 @@ public class MyCursorAdapter extends SimpleCursorAdapter {
 }
 
 3）在NoteList类的PROJECTION中显示颜色字段：
+
         NotePad.Notes.COLUMN_NAME_BACK_COLOR
         
 4.笔记的导出  
 1）导出界面布局：  
+
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
@@ -228,7 +225,8 @@ public class MyCursorAdapter extends SimpleCursorAdapter {
         android:onClick="OutputOk" />
 </LinearLayout>
 
-2）便签导出方法具体实现：  
+2）便签导出方法具体实现： 
+
 public class OutputText extends Activity {
    //要使用的数据库中笔记的信息
     private static final String[] PROJECTION = new String[] {
